@@ -39,12 +39,14 @@ def option_parser():
             help='read from standard input and send as input to ssh')
     parser.add_option('-P', '--print', dest='print_out', action='store_true',
             help='print output as we get it')
+    parser.add_option('-q', '--quiet', dest='no_report', action='store_true',
+                      help='suppress success/failure report printed on stdout')
 
     return parser
 
 def parse_args():
     parser = option_parser()
-    defaults = common_defaults(timeout=_DEFAULT_TIMEOUT)
+    defaults = common_defaults(timeout=_DEFAULT_TIMEOUT, no_report=False)
     parser.set_defaults(**defaults)
     opts, args = parser.parse_args()
 
@@ -108,7 +110,7 @@ def do_pssh(hosts, cmdline, opts):
         t = Task(host, port, user, cmd, opts, stdin)
         manager.add_task(t)
     manager.run()
-   
+
 if __name__ == "__main__":
     opts, args = parse_args()
     cmdline = " ".join(args)

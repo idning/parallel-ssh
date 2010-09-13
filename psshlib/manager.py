@@ -33,6 +33,7 @@ class Manager(object):
         self.askpass = opts.askpass
         self.outdir = opts.outdir
         self.errdir = opts.errdir
+        self.print_report = not opts.no_report
         self.iomap = IOMap()
 
         self.taskcount = 0
@@ -183,7 +184,8 @@ class Manager(object):
         """Marks a task as complete and reports its status to stdout."""
         self.done.append(task)
         n = len(self.done)
-        task.report(n)
+        if self.print_report:
+            task.report(n)
 
 
 class IOMap(object):
