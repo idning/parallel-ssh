@@ -41,6 +41,7 @@ class Task(object):
         self.byteswritten = 0
         self.outputbuffer = bytes()
         self.errorbuffer = bytes()
+        self.print_report = not opts.no_report
 
         self.stdin = None
         self.stdout = None
@@ -177,7 +178,10 @@ class Task(object):
                 if self.outfile:
                     self.writer.write(self.outfile, buf)
                 if self.print_out:
-                    sys.stdout.write('%s: %s' % (self.host, buf))
+                    if self.print_report:
+                        sys.stdout.write('%s: %s' % (self.host, buf))
+                    else:
+                        sys.stdout.write(buf)
                     if buf[-1] != '\n':
                         sys.stdout.write('\n')
             else:
