@@ -33,7 +33,7 @@ class Manager(object):
         self.askpass = opts.askpass
         self.outdir = opts.outdir
         self.errdir = opts.errdir
-        self.print_report = not opts.no_report
+        self.print_report = not opts.quiet
         self.iomap = IOMap()
 
         self.taskcount = 0

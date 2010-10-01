@@ -39,14 +39,14 @@ def option_parser():
             help='read from standard input and send as input to ssh')
     parser.add_option('-P', '--print', dest='print_out', action='store_true',
             help='print output as we get it')
-    parser.add_option('-q', '--quiet', dest='no_report', action='store_true',
+    parser.add_option('-q', '--quiet', dest='quiet', action='store_true',
                       help='suppress success/failure report printed on stdout')
 
     return parser
 
 def parse_args():
     parser = option_parser()
-    defaults = common_defaults(timeout=_DEFAULT_TIMEOUT, no_report=False)
+    defaults = common_defaults(timeout=_DEFAULT_TIMEOUT, quiet=False)
     parser.set_defaults(**defaults)
     opts, args = parser.parse_args()
 

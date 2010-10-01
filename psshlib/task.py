@@ -41,7 +41,7 @@ class Task(object):
         self.byteswritten = 0
         self.outputbuffer = bytes()
         self.errorbuffer = bytes()
-        self.print_report = not opts.no_report
+        self.print_report = not opts.quiet
 
         self.stdin = None
         self.stdout = None
